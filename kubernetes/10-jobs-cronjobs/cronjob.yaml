@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: nel-cronjob
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: nel-cronjob
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: busybox:1.36
+            name: nel-cronjob
+            command:
+            - sh
+            - c
+            - date;echo "Hello from cronjob"
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: '*/1 * * * *'
+status: {}

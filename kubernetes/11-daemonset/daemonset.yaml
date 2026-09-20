@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nel-daemon
+spec:
+  selector:
+    matchLabels:
+      app: nel-daemon
+
+  template:
+    metadata:
+      labels:
+        app: nel-daemon
+
+    spec:
+      containers:
+      - name: daemon
+        image: busybox:1.36
+        command:
+        - sh
+        - -c
+        - while true; do echo "Nel DaemonSet running on $(hostname)"; sleep 30; done
